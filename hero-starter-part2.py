@@ -220,6 +220,8 @@ class Store:
                 item = Store.items[i]
                 print(f'{i + 1}. buy {item.name} {item.cost}')
             print("10. leave")
+            if item.cost > hero.coins:
+                print('You dont have enough coins! Go kill another bad guy.')
             user_input = int(input("> "))
             if user_input == 10:
                 break
