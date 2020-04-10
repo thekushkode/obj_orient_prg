@@ -150,18 +150,19 @@ class Battle:
             print("> ",)
             user_input = int(input())
             if user_input == 1:
-                hero.attack(enemy)
+                hero.hero_attack(enemy)
             elif user_input == 2:
                 pass
             elif user_input == 3:
                 print("Goodbye.")
                 exit(0)
             else:
-                print("Invalid input %r" % user_input)
+                print(f'Invalid input {user_input}')
                 continue
             enemy.attack(hero)
         if hero.is_alive():
-            print("You defeated the %s" % enemy.name)
+            hero.coins += enemy.bounty
+            print(f'You defeated the {enemy.name}')
             return True
         else:
             print("YOU LOSE!")
@@ -227,10 +228,12 @@ class Store:
                 item = ItemToBuy()
                 hero.buy(item)
 
+norm = Normal('Norm')
+coward = Coward('Carl')
 zombie = Zombie('Zombie')
 medic = Medic('Medic')
 hero = Hero('LeBron', 0, 2)
-enemies = [Goblin('Goblin'), Wizard('Merlin')]
+enemies = [Goblin('Goblin'), Wizard('Merlin'), Zombie('Zombie'), Medic('Medic'), Coward('Carl'), Normal('Norm')]
 battle_engine = Battle()
 shopping_engine = Store()
 
